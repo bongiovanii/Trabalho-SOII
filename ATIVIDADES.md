@@ -8,9 +8,9 @@ Markdown
 ---
 ## ATIVIDADE 1: Relatório das Práticas de Aula
 ### Capítulo 6: Práticas de Discos e Montagem
-**Nome do Aluno:** [Seu Nome Completo]
- **Turno:** [Tarde ou Noite]
- **Data do Último Commit:** [Data de Hoje]
+**Nome do Aluno:** [Gustavo Santos Bongiovani de Oliveira]
+ **Turno:** [Noite]
+ **Data do Último Commit:** [20/11/2025]
  
 Esta seção documenta a execução das práticas de administração de sistemas realizadas em
  sala, conforme solicitado no final de cada capítulo do livro-texto.
