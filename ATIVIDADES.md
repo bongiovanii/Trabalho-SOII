@@ -22,20 +22,47 @@ Esta seção documenta a execução das práticas de administração de sistemas
 * **Evidência de Validação:**
 ```bash
 # Saída do comando 'cat /etc/fstab'
-(Cole aqui a saída do seu 'cat /etc/fstab')
+UUID=18bf095b-bc2e-440b-beba-ac1e86d08652 /               ext4    errors=remount-ro 0       1
+
+UUID=f3a8d2c4-9b7e-4e13-bc89-5d7f24a9c412 /backup         ext4    defaults          0       2
+
+UUID=09a6ad0d-aa9f-4c77-98cd-9a67ac99f9c6 none            swap    sw                0       0
+
+/dev/sr0                                   /media/cdrom0   udf,iso9660 user,noauto   0       0
+
 # Saída do comando 'df -h'
- (Cole aqui a saída do seu 'df -h' mostrando o /backup montado)
+Filesystem      Size  Used Avail Use% Mounted on
+udev            453M     0  453M   0% /dev
+tmpfs            97M  1.2M   95M   2% /run
+/dev/sda1        19G  6.6G   12G  38% /
+tmpfs           481M     0  481M   0% /dev/shm
+tmpfs           5.0M  8.0K  5.0M   1% /run/lock
+tmpfs            97M   80K   96M   1% /run/user/1000
+/dev/sdb1     10G   24M    10G   1% /backup
+
  ```
 #### Prática 8b65b431 02 (Livro-Texto p. 172)
- * **Resumo da Prática:** (Descreva brevemente o que você fez: criação do diretório `cdrom` e
- montagem manual do dispositivo `/dev/sr0` nele).
+ * **Resumo da Prática:** Criei o diretório cdrom e montei manualmente o /dev/sr0 nele. Depois validei lendo o arquivo de teste.
  
   * **Evidência de Validação:**
 ```bash
  # Saída do comando 'df -h'
- (Cole aqui a saída do seu 'df -h' mostrando o /dev/sr0 montado)
+Filesystem      Size  Used Avail Use% Mounted on
+udev            453M     0  453M   0% /dev
+tmpfs            97M  1.2M   95M   2% /run
+/dev/sda1        19G  6.8G   11G  39% /
+tmpfs           481M     0  481M   0% /dev/shm
+tmpfs           5.0M  8.0K  5.0M   1% /run/lock
+tmpfs            97M   84K   96M   1% /run/user/1000
+/dev/sr1         51M   51M     0 100% /media/userlinux/VBox_GAs_7.2.4
+/dev/sr0        364K  364K     0 100% /home/userlinux/cdrom
  # Saída do comando 'cat /home/usuario/cdrom/arquivo.txt'
- (Cole aqui a saída do cat, que deve ser "AIED VIVO")
+userlinux@debian:~/cdrom$ cat  /home/userlinux/cdrom/arquivo.txt
+aiedonline
+# Fiz todos os passos e baixei o arquivo correto, me retornou outro dentro do .txt
+Total hits: 2 out of a total of 2. This is equivalent to 100% (hit).
+Identification: 09a6ad0d-a
+AIED v(11)
  ```
 ### Capítulo 7: Práticas de Processos
 ```
