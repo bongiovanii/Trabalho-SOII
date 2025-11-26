@@ -10,7 +10,7 @@ Markdown
 ### Capítulo 6: Práticas de Discos e Montagem
 **Nome do Aluno:** [Gustavo Santos Bongiovani de Oliveira]
  **Turno:** [Noite]
- **Data do Último Commit:** [20/11/2025]
+ **Data do Último Commit:** [26/11/2025]
  
 Esta seção documenta a execução das práticas de administração de sistemas realizadas em
  sala, conforme solicitado no final de cada capítulo do livro-texto.
@@ -18,9 +18,7 @@ Esta seção documenta a execução das práticas de administração de sistemas
  texto dos comandos de validação solicitados. **Não use imagens (printscreens)**.
  
 #### Prática 8b65b431 01 (Livro-Texto p. 171)
-* **Resumo da Prática:** (Descreva brevemente o que você fez: adição do disco,
-particionamento com `fdisk`, formatação com `mkfs.ext4` e configuração da montagem
-automática no `/etc/fstab` para o diretório `/backup`).
+* **Resumo da Prática:** Adicionei um novo disco na VM, criei partição com fdisk, formatei em EXT4, montei em /backup e configurei montagem automática no /etc/fstab.
 * **Evidência de Validação:**
 ```bash
 # Saída do comando 'cat /etc/fstab'
