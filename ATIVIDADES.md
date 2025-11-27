@@ -10,7 +10,7 @@ Markdown
 ### Capítulo 6: Práticas de Discos e Montagem
 **Nome do Aluno:** [Gustavo Santos Bongiovani de Oliveira]
  **Turno:** [Noite]
- **Data do Último Commit:** [26/11/2025]
+ **Data do Último Commit:** [27/11/2025]
  
 Esta seção documenta a execução das práticas de administração de sistemas realizadas em
  sala, conforme solicitado no final de cada capítulo do livro-texto.
@@ -114,9 +114,7 @@ iface enp0s3 inet dhcp
     dns-nameservers 8.8.8.8
  ```
 #### Prática 0002 checkpoint04 (Livro-Texto p. 287)
- * **Resumo da Prática:** (Descreva brevemente o que você fez: configuração da rede para
- DHCP no arquivo e, em seguida, configuração de IP estático via comandos `ip address` e `ip
- route`).
+ * **Resumo da Prática:** Configurei a interface enp0s3 para obter IP via DHCP no arquivo /etc/network/interfaces e, em seguida, configurei manualmente um IP estático usando ip address e ip route. Depois validei as mudanças conferindo o IP aplicado e a rota padrão do sistema.
   * **Evidência de Validação:**
 ```bash
  # Saída do comando 'ip address show enp0s3'
@@ -133,12 +131,35 @@ iface enp0s3 inet dhcp
 ---
 ## ATIVIDADE 3: Análise e Compilação dos Códigos
 #### Prática 0002 checkpoint05 (Livro-Texto p. 288)
- * **Resumo da Prática:** (Descreva brevemente o que você fez: download de um arquivo
- usando `wget` para o diretório `/tmp`).
+ * **Resumo da Prática:** Baixei um arquivo usando o comando wget diretamente para o diretório /tmp, conforme instruções.
   * **Evidência de Validação:**
 ```bash
  # Saída do comando 'cat /tmp/install.py'
- (Cole aqui a saída do cat, que deve ser "aied.com.br")
+#!/usr/bin/python3
+import os;
+import sys
+import platform
+machine2bits = {'AMD64': 64, 'x86_64': 64, 'i386': 32, 'x86': 32, 'i686' : 32}
+os_version = machine2bits.get(platform.machine(), None)
+
+os.system("apt update");
+os.system("wget -O /tmp/libjsoncpp1_1.7.4-3_amd64.deb http://ftp.br.debian.org/debian/pool/main/libj/libjsoncpp/libjsoncpp1_1.7.4-3_amd64.deb");
+os.system("dpkg -i /tmp/libjsoncpp1_1.7.4-3_amd64.deb");
+#os.system("apt install libjsoncpp-dev -y");
+os.system("apt install g++ -y");
+os.system("apt install libcurl4-openssl-dev -y");
+os.system("rm -r /etc/aied");
+os.system("rm -r /etc/aied");
+os.system("mkdir /etc/aied");
+os.system("wget -O /tmp/aied.tar.gz http://www.aied.com.br/linux/download/aied_"+ str(os_version) +".tar.gz" );
+os.system("tar -xzvf /tmp/aied.tar.gz -C /etc/aied/");
+#os.system("rm /usr/sbin/aied");
+#os.system("rm /usr/bin/aied.py");
+os.system("ln -s /etc/aied/aied_"+ str(os_version) +" /usr/bin/aied");
+os.system("chmod +x /etc/aied/aied_"+ str ( os_version ) + "   " );
+
+#OK, será usado para isntalacao do aied.com.br
+
   * **Instrução:** Esta atividade é **física** e **manual**.
  * **Tarefa:** Crie um Mapa Mental em uma **única folha A4**, feito à mão, conectando os
  conceitos centrais dos Capítulos 6, 7 e 9. Não pode ser feito a lápis.
@@ -148,8 +169,9 @@ iface enp0s3 inet dhcp
  1. Colarocódigo-fontelimpo(semnúmerosdelinha).
  2. Compilareexecutarocódigonoseuterminal.
  3. Colarasaídaexataquevocêobteve.
- 4. Escreverumabreveanálisedoqueasaídasignificaesecorrespondeaoobjetivodo
+ 4. Escrever uma breve análise do que a saída significa e se corresponde ao objetivo do
  código.
+
  ### Códigos do Capítulo 6 (Discos e Montagem) #### `devices.cpp` (Livro-Texto p. 151-152)
   * **Objetivo do Código:** Ler o arquivo virtual `/proc/mounts` para descobrir e imprimir qual
  dispositivo de bloco (ex: `/dev/sda1`) está atualmente montado no diretório raiz (`/`).
