@@ -68,23 +68,50 @@ AIED v(11)
 ```
 ### Capítulo 9: Práticas de Redes
  #### Prática prc0001 01 (Livro-Texto p. 233)
- * **Resumo da Prática:** (Descreva brevemente o que você fez: execução dos comandos
- `locale-gen`, `script`, a listagem de processos com `ps` e a filtragem por `python`).
+ * **Resumo da Prática:** Executei locale-gen, iniciei gravação com script, listei processos com ps aux e filtrei por python.
   * **Evidência de Validação:**
 ```bash
  # Saída do comando 'cat /home/usuario/typescript' (após filtrar por 'python')
- (Cole aqui a saída do seu 'ps aux | grep python' conforme capturado pelo 'typescript')
+
+userlin+    3574  0.0  0.2   6340  2064 pts/1    S+   20:49   0:00 grep python
+
   #### Prática 0002 checkpoint03 (Livro-Texto p. 286)
- * **Resumo da Prática:** (Descreva brevemente o que você fez: configuração de IP estático
- editando o arquivo `/etc/network/interfaces` e reiniciando a máquina).
+ * **Resumo da Prática:** Configurei IP estático no /etc/network/interfaces, reiniciei a máquina e validei o IP e o gateway.
   * **Evidência de Validação:**
 ```bash
  # Saída do comando 'ip address show enp0s3'
- (Cole aqui a saída do 'ip address' mostrando o IP 10.0.2.3)
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:d9:44:fc brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic noprefixroute enp0s3
+       valid_lft 86392sec preferred_lft 86392sec
+    inet6 fd17:625c:f037:2:c53f:a618:6f2c:ef6f/64 scope global dynamic noprefixroute 
+       valid_lft 86121sec preferred_lft 14121sec
+    inet6 fe80::a79a:7ee9:9c3a:d11e/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+
  # Saída do comando 'ip route'
- (Cole aqui a saída do 'ip route' mostrando o gateway 10.0.2.2)
+default via 10.0.2.2 dev enp0s3 
+default via 10.0.2.2 dev enp0s3 proto dhcp src 10.0.2.15 metric 100 
+10.0.2.0/24 dev enp0s3 proto kernel scope link src 10.0.2.15 metric 100
+
  # Saída do comando 'cat /etc/network/interfaces'
- (Cole aqui o conteúdo do seu arquivo /etc/network/interfaces)
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+allow-hotplug enp0s3
+auto enp0s3
+iface enp0s3 inet dhcp
+    address 10.0.2.3
+    netmask 255.255.255.0  # Máscara de 24 bits
+    gateway 10.0.2.2
+    dns-nameservers 8.8.8.8
  ```
 #### Prática 0002 checkpoint04 (Livro-Texto p. 287)
  * **Resumo da Prática:** (Descreva brevemente o que você fez: configuração da rede para
